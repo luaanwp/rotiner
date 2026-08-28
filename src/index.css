@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+/* ─────────────────────────────────────────────────────────────
+   Sistema de design — Rotiner v2 (§07)
+   Roxo protagonista, âmbar de apoio, bolinhas por toda parte.
+   Tokens via @theme: viram utilitários Tailwind (bg-bg, text-tinta, etc)
+   e variáveis CSS (var(--color-roxo)).
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  /* Base do canvas */
+  --color-bg: #1a1430;
+  --color-bg-2: #241a45;
+  --color-dot: rgba(167, 139, 250, 0.25);
+
+  /* Primária / secundária */
+  --color-roxo: #7c3aed;
+  --color-roxo-claro: #a78bfa;
+  --color-ambar: #f59e0b;
+
+  /* Superfícies e texto */
+  --color-painel: #2b2450;
+  --color-tinta: #ede9fb;
+
+  /* Semânticas — prioridade / status (§07) */
+  --color-alta: #f43f5e; /* prioridade alta / urgente     */
+  --color-media: #f59e0b; /* prioridade média / pausado    */
+  --color-baixa: #22d3ee; /* prioridade baixa / ideia      */
+  --color-concluido: #10b981; /* concluído                 */
+  --color-andamento: #8b5cf6; /* em andamento              */
+}
+
+/* Fundo global do app: gradiente roxo profundo + bolinhas.
+   A bolinha escala junto com o zoom multiplicando o background-size
+   (fase 8); aqui fica no tamanho base 24px. */
+:root {
+  color-scheme: dark;
+  --dot-size: 24px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-tinta);
+  background-color: var(--color-bg);
+  /* só o gradiente aqui; as bolinhas viraram o canvas pannable/zoomable (Fase 8).
+     No AuthScreen/loading (sem canvas) fica só o gradiente, o que é o esperado. */
+  background-image: linear-gradient(160deg, var(--color-bg), var(--color-bg-2));
+  font-family:
+    system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
