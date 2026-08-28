@@ -18,12 +18,14 @@ import { Composer } from '@/components/popups/Composer'
 import { ProjectDrawer } from '@/components/popups/ProjectDrawer'
 import { ConfirmDialog } from '@/components/popups/ConfirmDialog'
 import TodayView from '@/views/TodayView'
+import RotinasView from '@/views/RotinasView'
 import CalendarView from '@/views/CalendarView'
 import ProjectsView from '@/views/ProjectsView'
 import BoardsView from '@/views/BoardsView'
 
 const VIEWS: Record<ViewId, ComponentType> = {
   hoje: TodayView,
+  rotinas: RotinasView,
   calendario: CalendarView,
   projetos: ProjectsView,
   quadros: BoardsView,

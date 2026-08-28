@@ -17,6 +17,7 @@ const TABLE_KEYS: Record<string, readonly (readonly string[])[]> = {
   tasks: [['tasks']],
   notes: [['notes']],
   projects: [['projects']],
+  routines: [['routines']],
   boards: [['board']],
   board_columns: [['board']],
   // cards abastecem tanto as colunas do quadro quanto os post-its livres.

@@ -7,6 +7,7 @@
 
 export type Priority = 'alta' | 'media' | 'baixa'
 export type ProjectStatus = 'andamento' | 'pausado' | 'ideia' | 'concluido'
+export type Cadence = 'diaria' | 'semanal' | 'mensal'
 
 /** Campos comuns a todas as entidades. */
 interface Base {
@@ -45,6 +46,18 @@ export interface Project extends Base {
   progress: number
   whereStopped: string | null
   nextStep: string | null
+}
+
+export interface Routine extends Base {
+  title: string
+  cadence: Cadence
+  /** dias da semana (0=Dom … 6=Sáb); só relevante quando cadence = 'semanal' */
+  weekdays: number[]
+  /** "HH:mm"; null = sem hora */
+  time: string | null
+  active: boolean
+  /** YYYY-MM-DD do último "feito"; null = nunca */
+  lastDone: string | null
 }
 
 export interface Board extends Base {
