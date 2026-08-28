@@ -4,6 +4,7 @@
  */
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useAuth } from '@/hooks/useAuth'
+import { useRealtimeSync } from '@/hooks/useRealtimeSync'
 import { AppShell } from '@/components/layout/AppShell'
 import AuthScreen from '@/views/AuthScreen'
 
@@ -15,6 +16,7 @@ const queryClient = new QueryClient({
 
 function Gate() {
   const { user, loading } = useAuth()
+  useRealtimeSync(!!user)
   if (loading) {
     return (
       <div className="flex min-h-dvh items-center justify-center text-roxo-claro">
