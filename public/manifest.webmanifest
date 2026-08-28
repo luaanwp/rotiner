@@ -1,0 +1,19 @@
+{
+  "name": "Rotiner",
+  "short_name": "Rotiner",
+  "description": "Cockpit de rotinas em canvas infinito",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1430",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
