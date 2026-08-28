@@ -269,8 +269,9 @@ export default function TodayView() {
     )
   }
 
-  return (
-    <div className="pointer-events-auto mx-auto max-w-2xl px-4 py-6 md:px-8">
+  // Coluna central: saudação + tarefas do dia.
+  const center = (
+    <div>
       <header className="mb-6">
         <h1 className="text-2xl font-black text-tinta">{greeting()} 👋</h1>
         <p className="text-sm text-roxo-claro">
@@ -294,48 +295,66 @@ export default function TodayView() {
               Nenhuma tarefa ainda. Toque pra criar a primeira.
             </button>
           )}
-
-          {/* Painéis de situação — só na tela inicial pura (sem busca ativa). */}
-          {!search && (
-            <>
-              <section className="mb-6 mt-2">
-                <OverviewHeader
-                  label="Projetos"
-                  total={projects.length}
-                  to="projetos"
-                  seeAll="Ver todos"
-                />
-                {projectSample.length === 0 ? (
-                  <p className="text-sm text-tinta/30">Nenhum projeto ainda.</p>
-                ) : (
-                  <div className="space-y-1.5">
-                    {projectSample.map((p) => (
-                      <ProjectCard key={p.id} project={p} />
-                    ))}
-                  </div>
-                )}
-              </section>
-
-              <section className="mb-6">
-                <OverviewHeader
-                  label="Notas"
-                  total={notes.length}
-                  to="calendario"
-                  seeAll="Ver todas"
-                />
-                {noteSample.length === 0 ? (
-                  <p className="text-sm text-tinta/30">Nenhuma nota ainda.</p>
-                ) : (
-                  <div className="space-y-1.5">
-                    {noteSample.map((n) => (
-                      <NoteCard key={n.id} note={n} />
-                    ))}
-                  </div>
-                )}
-              </section>
-            </>
-          )}
         </>
+      )}
+    </div>
+  )
+
+  // Painel de notas (fica à ESQUERDA da saudação no desktop).
+  const notasPanel = (
+    <section className="order-2 self-start lg:order-1 lg:sticky lg:top-6">
+      <OverviewHeader
+        label="Notas"
+        total={notes.length}
+        to="calendario"
+        seeAll="Ver todas"
+      />
+      {noteSample.length === 0 ? (
+        <p className="text-sm text-tinta/30">Nenhuma nota ainda.</p>
+      ) : (
+        <div className="space-y-1.5">
+          {noteSample.map((n) => (
+            <NoteCard key={n.id} note={n} />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+
+  // Painel de projetos (fica à DIREITA da saudação no desktop).
+  const projetosPanel = (
+    <section className="order-3 self-start lg:sticky lg:top-6">
+      <OverviewHeader
+        label="Projetos"
+        total={projects.length}
+        to="projetos"
+        seeAll="Ver todos"
+      />
+      {projectSample.length === 0 ? (
+        <p className="text-sm text-tinta/30">Nenhum projeto ainda.</p>
+      ) : (
+        <div className="space-y-1.5">
+          {projectSample.map((p) => (
+            <ProjectCard key={p.id} project={p} />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+
+  return (
+    <div className="pointer-events-auto mx-auto max-w-6xl px-4 py-6 md:px-8">
+      {search ? (
+        // Buscando: só a coluna central (painéis somem), centralizada.
+        <div className="mx-auto max-w-2xl">{center}</div>
+      ) : (
+        // Notas ⟵ | saudação + tarefas | ⟶ Projetos. Empilha no mobile
+        // com as tarefas primeiro (order-1).
+        <div className="grid gap-6 lg:grid-cols-[17rem_minmax(0,1fr)_17rem]">
+          {notasPanel}
+          <div className="order-1 lg:order-2">{center}</div>
+          {projetosPanel}
+        </div>
       )}
     </div>
   )
