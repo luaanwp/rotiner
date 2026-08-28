@@ -1,4 +1,4 @@
-import { CalendarDays, Columns3, FolderKanban, Sunrise } from 'lucide-react'
+import { CalendarDays, Columns3, FolderKanban, Repeat, Sunrise } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import type { ViewId } from '@/stores/useUiStore'
 
@@ -11,6 +11,7 @@ export interface NavItem {
 /** Fonte única dos itens de navegação — usada por NavRail (desktop) e MobileNav. */
 export const NAV_ITEMS: readonly NavItem[] = [
   { id: 'hoje', label: 'Hoje', icon: Sunrise },
+  { id: 'rotinas', label: 'Rotinas', icon: Repeat },
   { id: 'calendario', label: 'Calendário', icon: CalendarDays },
   { id: 'projetos', label: 'Projetos', icon: FolderKanban },
   { id: 'quadros', label: 'Quadros', icon: Columns3 },

@@ -4,7 +4,7 @@
  */
 import { create } from 'zustand'
 
-export type ViewId = 'hoje' | 'calendario' | 'projetos' | 'quadros'
+export type ViewId = 'hoje' | 'rotinas' | 'calendario' | 'projetos' | 'quadros'
 
 /** id do popup ativo (Composer, ProjectDrawer, …) — usado pelo blur do canvas (Fase 8). */
 export type PopupId = string
